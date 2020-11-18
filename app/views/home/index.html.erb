@@ -5,29 +5,18 @@
   <% @categories.each do  |category|%>
   <li><%= category.title  %></li>
   <div class="card">
-    <ul>
+    <ul> 
       <% category.tasks.each do |task|  %>
-      <li>
+      <li id='contact-form'>
         <%= task.title  %>
         <% unless task.deadline.nil? %>
           , to read: <%= task.deadline.strftime('%D')  %>
         <% end %>
+        <%= link_to "Suppr", task_path(task), :class => "btn btn-light btn-lg", :method => 'DELETE', :data => {:confirm => 'Sûr ?'} %>
       </li>
       <% end %>
     </ul>
   </div>
   <% end %>
   </ul>
-</div>
-
-<div class="container">
-  <div class="row">
-    <% @tasks.each do |task|  %>
-      <div class="card col-3">
-        <% unless task.image.nil? %>
-          <%= image_tag task.image, class: "rounded-circle" %>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
 </div>
